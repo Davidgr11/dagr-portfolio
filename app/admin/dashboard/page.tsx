@@ -12,6 +12,13 @@ import {
   Eye,
   EyeOff,
 } from 'lucide-react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Dashboard - Portfolio Admin',
+  description: 'Admin dashboard for managing portfolio content',
+  manifest: '/admin-manifest.json',
+};
 
 export default async function AdminDashboard() {
   const supabase = await createClient();
