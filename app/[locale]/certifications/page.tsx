@@ -1,5 +1,5 @@
 import { createClient } from '@/lib/supabase/server';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { CertificationCard } from '@/components/sections/CertificationCard';
 import { FadeIn } from '@/components/animations/FadeIn';
 import { Stagger, StaggerItem } from '@/components/animations/Stagger';
@@ -9,12 +9,17 @@ import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
 interface CertificationsPageProps {
-  params: {
+  params: Promise<{
     locale: string;
-  };
+  }>;
 }
 
-export default async function CertificationsPage({ params: { locale } }: CertificationsPageProps) {
+export default async function CertificationsPage({ params }: CertificationsPageProps) {
+  const { locale } = await params;
+
+  // Enable static rendering for next-intl
+  setRequestLocale(locale);
+
   const supabase = await createClient();
   const tCert = await getTranslations('certifications');
 
