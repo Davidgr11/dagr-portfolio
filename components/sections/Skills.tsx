@@ -80,7 +80,7 @@ export async function Skills({ locale }: SkillsProps) {
             <StaggerItem key={category.id}>
               <div className="space-y-6">
                 {/* Category Title */}
-                <h3 className="text-2xl font-bold text-white text-center">
+                <h3 className="text-base md:text-lg text-white text-center font-semibold">
                   {category[nameField] || category.name_en}
                 </h3>
 

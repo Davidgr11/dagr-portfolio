@@ -39,7 +39,7 @@ export function CertificationCard({ certification, locale }: CertificationCardPr
             </div>
           )}
 
-          <CardTitle className="text-lg text-white text-center group-hover:text-cyan-400 transition-colors line-clamp-2">
+          <CardTitle className="text-base md:text-lg text-white text-center group-hover:text-cyan-400 transition-colors line-clamp-2">
             {certification.name}
           </CardTitle>
         </CardHeader>
@@ -48,13 +48,13 @@ export function CertificationCard({ certification, locale }: CertificationCardPr
           {/* Issuer */}
           <div className="flex items-center justify-center gap-2 text-white/70">
             <Award className="h-4 w-4 text-cyan-400 flex-shrink-0" />
-            <span className="text-base font-medium text-center">
+            <span className="text-base md:text-lg font-medium text-center">
               {certification.issuer}
             </span>
           </div>
 
           {/* Date */}
-          <div className="flex items-center justify-center gap-2 text-base text-white/60">
+          <div className="flex items-center justify-center gap-2 text-base md:text-lg text-white/60">
             <Calendar className="h-4 w-4 flex-shrink-0" />
             <span>{certification.issueDate}</span>
           </div>

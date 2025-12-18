@@ -94,7 +94,7 @@ export function EducationCard({ education }: EducationCardProps) {
           )}
           <div className="flex-1">
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-2">
-              <CardTitle className="text-xl text-white">
+              <CardTitle className="text-base md:text-lg text-white">
                 {education.degree}
               </CardTitle>
               <div className="flex flex-wrap items-center gap-2">
@@ -119,10 +119,10 @@ export function EducationCard({ education }: EducationCardProps) {
               </div>
             </div>
             <div className="space-y-1">
-              <p className="text-lg text-white/70 font-medium">
+              <p className="text-base md:text-lg text-white/70 font-medium">
                 {education.institution}
               </p>
-              <div className="flex items-center gap-2 text-lg text-white/60">
+              <div className="flex items-center gap-2 text-base md:text-lg text-white/60">
                 <Calendar className="h-4 w-4" />
                 <span>
                   {education.startDate} - {education.endDate}

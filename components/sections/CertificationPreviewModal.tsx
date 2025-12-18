@@ -24,7 +24,7 @@ export function CertificationPreviewModal({ isOpen, onClose, certification, loca
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="w-[95vw] max-w-[1400px] h-auto max-h-[95vh] overflow-y-auto bg-black/95 backdrop-blur-xl border-2 border-cyan-500/30 custom-scrollbar p-6 lg:p-8 rounded-lg">
+      <DialogContent className="w-[95vw] md:w-[90vw] lg:w-[85vw] max-w-[1600px] h-auto max-h-[95vh] overflow-y-auto bg-black/95 backdrop-blur-xl border-2 border-cyan-500/30 custom-scrollbar p-6 lg:p-8 rounded-lg">
         {/* Close button */}
         <button
           onClick={onClose}
@@ -90,7 +90,7 @@ export function CertificationPreviewModal({ isOpen, onClose, certification, loca
                 {isPDF ? (
                   <iframe
                     src={certification.certificateFileUrl}
-                    className="w-full h-[600px]"
+                    className="w-full h-[50vh] md:h-[60vh] lg:h-[600px]"
                     title={certification.name}
                   />
                 ) : (

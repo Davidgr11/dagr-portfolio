@@ -143,7 +143,7 @@ export function Awards({ locale }: AwardsProps) {
 
                   {/* Title and Issuer */}
                   <div className="flex-1 min-w-0">
-                    <CardTitle className="text-xl md:text-2xl text-white mb-2">
+                    <CardTitle className="text-base md:text-lg text-white mb-2">
                       {currentAward[titleField] || currentAward.title_en}
                     </CardTitle>
                     <CardDescription className="text-white/70 font-medium text-base">

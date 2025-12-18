@@ -1,9 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { X, Download, ExternalLink } from 'lucide-react';
+import { X, ExternalLink } from 'lucide-react';
 import { Button } from './button';
 import { useTranslations } from 'next-intl';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 
 interface ResumeModalProps {
   resumeUrl: string;
@@ -14,54 +15,47 @@ interface ResumeModalProps {
 export function ResumeModal({ resumeUrl, isOpen, onClose }: ResumeModalProps) {
   const t = useTranslations('common');
 
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      {/* Backdrop */}
-      <div
-        className="absolute inset-0 bg-black/80 backdrop-blur-sm"
-        onClick={onClose}
-      />
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="w-[95vw] md:w-[90vw] lg:w-[85vw] max-w-[1600px] h-auto max-h-[95vh] overflow-hidden bg-black/95 backdrop-blur-xl border-2 border-cyan-500/30 p-6 lg:p-8 rounded-lg">
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          className="absolute right-4 top-4 z-10 text-white/70 hover:text-white transition-colors"
+        >
+          <X className="h-6 w-6" />
+        </button>
 
-      {/* Modal */}
-      <div className="relative w-full max-w-6xl h-[90vh] bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden">
-        {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-            {t('resumePreview')}
-          </h2>
-          <div className="flex items-center gap-2">
+        {/* Content */}
+        <div className="space-y-4">
+          {/* Header */}
+          <div className="flex items-center justify-between gap-4 pr-8">
+            <DialogTitle className="text-2xl md:text-3xl text-white">
+              {t('resumePreview')}
+            </DialogTitle>
             <Button
-              variant="outline"
-              size="sm"
               asChild
+              size="sm"
+              className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white flex-shrink-0"
             >
               <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
                 <ExternalLink className="h-4 w-4 mr-2" />
                 {t('open')}
               </a>
             </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={onClose}
-            >
-              <X className="h-5 w-5" />
-            </Button>
+          </div>
+
+          {/* PDF Viewer */}
+          <div className="relative w-full rounded-lg overflow-hidden bg-black border border-white/10">
+            <iframe
+              src={`${resumeUrl}#toolbar=0`}
+              className="w-full h-[60vh] md:h-[70vh] lg:h-[75vh]"
+              title="Resume Preview"
+            />
           </div>
         </div>
-
-        {/* PDF Viewer */}
-        <div className="w-full h-[calc(100%-5rem)] bg-gray-100 dark:bg-gray-800">
-          <iframe
-            src={`${resumeUrl}#toolbar=0`}
-            className="w-full h-full"
-            title="Resume Preview"
-          />
-        </div>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 }
 

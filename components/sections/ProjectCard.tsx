@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
@@ -24,14 +24,48 @@ interface ProjectCardProps {
 export function ProjectCard({ project }: ProjectCardProps) {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const [isDescExpanded, setIsDescExpanded] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
   const t = useTranslations('projects');
 
   // Check if description is longer than 3 lines (roughly 150 characters)
   const isLongDescription = project.description.length > 150;
 
+  // Intersection Observer for mobile auto-expand
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Only auto-expand on mobile (check viewport width)
+        const isMobile = window.innerWidth < 768;
+        if (isMobile) {
+          setIsInView(entry.isIntersecting && entry.intersectionRatio > 0.5);
+        } else {
+          setIsInView(true); // Always expanded on desktop
+        }
+      },
+      {
+        threshold: [0.5],
+        rootMargin: '-10% 0px -10% 0px',
+      }
+    );
+
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
+    }
+
+    return () => {
+      if (cardRef.current) {
+        observer.unobserve(cardRef.current);
+      }
+    };
+  }, []);
+
   return (
     <>
-      <Card className="h-full bg-white/10 backdrop-blur-xl border-white/20 hover:bg-white/15 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/20 group overflow-hidden">
+      <Card
+        ref={cardRef}
+        className="bg-white/10 backdrop-blur-xl border-white/20 hover:bg-white/15 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/20 group overflow-hidden"
+      >
         {project.imageUrl && (
           <div className="relative h-56 w-full overflow-hidden">
             <Image
@@ -45,14 +79,16 @@ export function ProjectCard({ project }: ProjectCardProps) {
         )}
 
         <CardHeader>
-          <CardTitle className="text-xl text-white group-hover:text-cyan-400 transition-colors">
+          <CardTitle className="text-base md:text-lg text-white group-hover:text-cyan-400 transition-colors">
             {project.title}
           </CardTitle>
-          <div className="space-y-2">
+
+          {/* Description - hidden on mobile when not in view */}
+          <div className={`space-y-2 transition-all duration-500 ${isInView ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 md:max-h-96 md:opacity-100 overflow-hidden'}`}>
             <CardDescription className={`text-white/70 text-justify ${isDescExpanded ? '' : 'line-clamp-3'}`}>
               {project.description}
             </CardDescription>
-            {isLongDescription && (
+            {isLongDescription && isInView && (
               <button
                 onClick={() => setIsDescExpanded(!isDescExpanded)}
                 className="flex items-center gap-1 text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
@@ -73,7 +109,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </div>
         </CardHeader>
 
-        <CardContent className="space-y-4">
+        {/* Content - hidden on mobile when not in view */}
+        <CardContent className={`space-y-4 transition-all duration-500 ${isInView ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 md:max-h-96 md:opacity-100 overflow-hidden'}`}>
           {/* Technologies */}
           <div className="flex flex-wrap gap-2">
             {project.technologies?.map((tech) => (

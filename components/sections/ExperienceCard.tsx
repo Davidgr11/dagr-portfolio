@@ -50,10 +50,10 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
           <div className="flex-1 min-w-0">
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3">
               <div>
-                <CardTitle className="text-xl text-white mb-1">
+                <CardTitle className="text-base md:text-lg text-white mb-1">
                   {experience.position}
                 </CardTitle>
-                <p className="text-lg text-white/70 font-medium">
+                <p className="text-base md:text-lg text-white/70 font-medium">
                   {experience.company}
                 </p>
               </div>
@@ -69,7 +69,7 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
               )}
             </div>
 
-            <div className="flex flex-wrap items-center gap-3 mt-3 text-lg text-white/60">
+            <div className="flex flex-wrap items-center gap-3 mt-3 text-base md:text-lg text-white/60">
               {experience.location && (
                 <div className="flex items-center gap-1.5">
                   <MapPin className="h-4 w-4" />

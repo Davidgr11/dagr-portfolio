@@ -142,7 +142,7 @@ export function Hero({ data }: HeroProps) {
                   {/* Image container */}
                   <div className="relative">
                     <div className="absolute inset-0 bg-gradient-to-tr from-blue-500 to-cyan-500 rounded-full blur-2xl opacity-50" />
-                    <div className="relative w-80 h-80 md:w-96 md:h-96">
+                    <div className="relative w-64 h-64 md:w-80 md:h-80">
                       <Image
                         src={data.profile_image_url}
                         alt={data.title}
