@@ -2,7 +2,7 @@
   "name": "Portfolio Admin",
   "short_name": "Admin",
   "description": "Admin panel for managing portfolio content",
-  "start_url": "/admin/dashboard",
+  "start_url": "/admin",
   "display": "standalone",
   "background_color": "#0a0a0a",
   "theme_color": "#06b6d4",
