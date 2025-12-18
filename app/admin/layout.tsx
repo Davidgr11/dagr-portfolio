@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { AdminSidebar } from '@/components/admin/AdminSidebar';
+import { AdminHead } from '@/components/admin/AdminHead';
 import { Toaster } from 'sonner';
 import { User, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
@@ -65,7 +66,9 @@ export default async function AdminLayout({
   */
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+    <>
+      <AdminHead />
+      <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
       {/* Admin Navigation - Desktop only */}
       <nav className="hidden lg:block sticky top-0 z-20 border-b bg-card/80 backdrop-blur-lg shadow-sm">
         <div className="container mx-auto px-6 py-4">
@@ -138,6 +141,7 @@ export default async function AdminLayout({
 
       {/* Toast Notifications */}
       <Toaster position="top-right" richColors closeButton />
-    </div>
+      </div>
+    </>
   );
 }
