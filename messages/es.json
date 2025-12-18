@@ -1,0 +1,111 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "projects": "Proyectos",
+    "about": "Acerca de",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "badge": "Disponible para Contratar",
+    "title": "Desarrollador de Software",
+    "cta": "Trabajemos Juntos",
+    "viewResume": "Ver Currículum",
+    "scrollDown": "Desplázate hacia abajo"
+  },
+  "sections": {
+    "about": "Sobre Mí",
+    "education": "Educación",
+    "experience": "Experiencia",
+    "projects": "Proyectos Destacados",
+    "projectsSubtitle": "Aquí hay algunos de mis proyectos recientes que demuestran mis habilidades y experiencia",
+    "allProjects": "Ver Todos los Proyectos",
+    "certifications": "Certificaciones",
+    "skills": "Habilidades y Tecnologías",
+    "awards": "Liderazgo y Premios",
+    "contact": "Contáctame"
+  },
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "¿Tienes una pregunta o quieres trabajar juntos? Me encantaría saber de ti.",
+    "formTitle": "Envíame un mensaje",
+    "formSubtitle": "Completa el formulario y te responderé lo antes posible.",
+    "name": "Nombre",
+    "namePlaceholder": "Tu nombre",
+    "email": "Correo Electrónico",
+    "emailPlaceholder": "tu.correo@ejemplo.com",
+    "subject": "Asunto",
+    "subjectPlaceholder": "¿De qué se trata?",
+    "message": "Mensaje",
+    "messagePlaceholder": "Tu mensaje aquí...",
+    "send": "Enviar Mensaje",
+    "sending": "Enviando...",
+    "successTitle": "¡Mensaje Enviado!",
+    "successMessage": "Gracias por contactarme. Te responderé pronto.",
+    "errorTitle": "Error",
+    "errorMessage": "Error al enviar el mensaje. Por favor intenta de nuevo o contáctame directamente por correo.",
+    "sendAnother": "Enviar Otro Mensaje",
+    "responseTime": "Responderé en 24-48 horas"
+  },
+  "projects": {
+    "viewProject": "Ver Proyecto",
+    "viewCode": "Ver Código",
+    "preview": "Previsualizar",
+    "visitProject": "Visitar Proyecto",
+    "noVideoAvailable": "No hay video de previsualización disponible para este proyecto",
+    "showMore": "Ver más",
+    "showLess": "Ver menos",
+    "filter": "Filtrar por tecnología",
+    "search": "Buscar proyectos..."
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Ocurrió un error",
+    "retry": "Reintentar",
+    "close": "Cerrar",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "add": "Agregar",
+    "view": "Ver",
+    "open": "Abrir",
+    "download": "Descargar",
+    "present": "Presente",
+    "resumePreview": "Vista Previa del Currículum"
+  },
+  "education": {
+    "gpa": "Promedio",
+    "present": "Presente",
+    "showCoursework": "Ver materias relevantes",
+    "hideCoursework": "Ocultar materias",
+    "status": {
+      "studying": "Cursando",
+      "graduated": "Graduado",
+      "incomplete": "Incompleto",
+      "inProgress": "En Curso"
+    }
+  },
+  "about": {
+    "yearsExperience": "Años de Experiencia",
+    "projectsCompleted": "Proyectos Completados",
+    "clientsServed": "Clientes Satisfechos"
+  },
+  "experience": {
+    "subtitle": "Mi trayectoria profesional y experiencia laboral",
+    "present": "Presente",
+    "showMore": "Ver más",
+    "showLess": "Ver menos"
+  },
+  "skills": {
+    "subtitle": "Tecnologías y herramientas con las que trabajo"
+  },
+  "certifications": {
+    "subtitle": "Certificaciones y cursos profesionales",
+    "issuer": "Emitido por",
+    "viewCredential": "Ver Credencial"
+  },
+  "awards": {
+    "subtitle": "Reconocimientos y logros",
+    "issuedBy": "Otorgado por"
+  }
+}
