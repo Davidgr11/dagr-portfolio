@@ -1,6 +1,5 @@
 import { Hero } from '@/components/sections/Hero';
 import { Projects } from '@/components/sections/Projects';
-import { About } from '@/components/sections/About';
 import { Education } from '@/components/sections/Education';
 import { Experience } from '@/components/sections/Experience';
 import { Certifications } from '@/components/sections/Certifications';
@@ -214,7 +213,6 @@ export default async function HomePage({
       <div className="relative z-10">
         <Hero data={profile} />
         <Education locale={locale} />
-        <About locale={locale} />
         <Experience locale={locale} />
         <Projects locale={locale} />
         <Certifications locale={locale} />
