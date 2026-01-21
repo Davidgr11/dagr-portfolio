@@ -17,7 +17,7 @@ export function ResumeModal({ resumeUrl, isOpen, onClose }: ResumeModalProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="w-[95vw] md:w-[90vw] lg:w-[85vw] max-w-[1600px] h-auto max-h-[95vh] overflow-hidden bg-black/95 backdrop-blur-xl border-2 border-cyan-500/30 p-6 lg:p-8 rounded-lg">
+      <DialogContent className="w-[95vw] md:w-[92vw] lg:w-[90vw] xl:w-[85vw] max-w-[1800px] h-auto max-h-[95vh] overflow-hidden bg-black/95 backdrop-blur-xl border-2 border-cyan-500/30 p-6 lg:p-8 rounded-lg">
         {/* Close button */}
         <button
           onClick={onClose}
