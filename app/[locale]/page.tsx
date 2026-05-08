@@ -36,6 +36,7 @@ export default async function HomePage({
     location: (locale === 'es' && (profileData as Record<string, unknown>).location_es) ? (profileData as Record<string, unknown>).location_es as string : (profileData as Record<string, unknown>).location_en as string,
     profile_image_url: (profileData as Record<string, unknown>).profile_image_url as string | null,
     resume_url: (profileData as Record<string, unknown>).resume_url as string | null,
+    show_resume: (profileData as Record<string, unknown>).show_resume !== false,
     email: (profileData as Record<string, unknown>).email as string,
     linkedin_url: (profileData as Record<string, unknown>).linkedin_url as string | null,
     github_url: (profileData as Record<string, unknown>).github_url as string | null,

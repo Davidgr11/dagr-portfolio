@@ -20,6 +20,7 @@ export interface Database {
           badge_text: string;
           profile_image_url: string | null;
           resume_url: string | null;
+          show_resume: boolean;
           email: string;
           linkedin_url: string | null;
           github_url: string | null;

@@ -125,19 +125,6 @@ function ExperienceItem({
       {isExpanded && (
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 gap-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div>
-                <Label>Order</Label>
-                <Input
-                  type="number"
-                  value={exp.order}
-                  onChange={(e) =>
-                    onUpdate(index, 'order', parseInt(e.target.value))
-                  }
-                />
-              </div>
-            </div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label>Employment Type (English) *</Label>
@@ -392,7 +379,7 @@ export default function ExperienceManagement() {
     const { data: experienceData } = await supabase
       .from('experience')
       .select('*')
-      .order('order', { ascending: true });
+      .order('start_date', { ascending: false });
 
     if (experienceData) {
       setExperience(experienceData);
@@ -402,9 +389,18 @@ export default function ExperienceManagement() {
   }
 
   async function handleSaveExperience(exp: Experience) {
+    // Auto-assign order based on start_date (most recent = lowest order)
+    const sorted = [...experience].sort((a, b) =>
+      b.start_date.localeCompare(a.start_date)
+    );
+    const orderIndex = sorted.findIndex(
+      (e) => (e.id && e.id === exp.id) || (!e.id && e.start_date === exp.start_date && e.position_en === exp.position_en)
+    );
+    const expWithOrder = { ...exp, order: orderIndex >= 0 ? orderIndex + 1 : sorted.length + 1 };
+
     const { error } = await supabase
       .from('experience')
-      .upsert(exp)
+      .upsert(expWithOrder)
       .select()
       .single();
 
@@ -457,9 +453,11 @@ export default function ExperienceManagement() {
   }
 
   function updateExperience(index: number, field: keyof Experience, value: Experience[keyof Experience]) {
-    const updated = [...experience];
-    updated[index] = { ...updated[index], [field]: value };
-    setExperience(updated);
+    setExperience(prev => {
+      const updated = [...prev];
+      updated[index] = { ...updated[index], [field]: value };
+      return updated;
+    });
   }
 
   function addAchievementEn(index: number) {

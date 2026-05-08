@@ -44,7 +44,7 @@ export function Experience({ locale }: ExperienceProps) {
         .from('experience')
         .select('*')
         .eq('is_visible', true)
-        .order('order', { ascending: true });
+        .order('start_date', { ascending: false });
 
       if (data) {
         setExperiences(data as Experience[]);

@@ -14,6 +14,7 @@ interface HeroData {
   badge_text: string;
   profile_image_url: string | null;
   resume_url: string | null;
+  show_resume: boolean;
   email: string;
   linkedin_url: string | null;
   github_url: string | null;
@@ -33,17 +34,19 @@ export function Hero({ data }: HeroProps) {
       <div className="container mx-auto px-4 py-20 relative z-10">
         <div className="max-w-5xl mx-auto">
           {/* Badge */}
-          <FadeIn delay={0.1}>
-            <div className="flex justify-center mb-8">
-              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl">
-                <span className="relative flex h-3 w-3">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-cyan-500 shadow-lg shadow-cyan-500/50"></span>
-                </span>
-                <span className="text-sm font-medium text-white">{data.badge_text}</span>
+          {data.badge_text && (
+            <FadeIn delay={0.1}>
+              <div className="flex justify-center mb-8">
+                <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl">
+                  <span className="relative flex h-3 w-3">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-cyan-500 shadow-lg shadow-cyan-500/50"></span>
+                  </span>
+                  <span className="text-sm font-medium text-white">{data.badge_text}</span>
+                </div>
               </div>
-            </div>
-          </FadeIn>
+            </FadeIn>
+          )}
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left side - Text content */}
@@ -84,13 +87,23 @@ export function Hero({ data }: HeroProps) {
               {/* CTA Buttons */}
               <FadeIn delay={0.6}>
                 <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-                  <ResumeButton
-                    resumeUrl={data.resume_url}
-                    className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white shadow-2xl shadow-blue-500/50 group border-0"
-                  >
-                    <Download className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                    {t('viewResume')}
-                  </ResumeButton>
+                  {data.show_resume ? (
+                    <ResumeButton
+                      resumeUrl={data.resume_url}
+                      className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white shadow-2xl shadow-blue-500/50 group border-0"
+                    >
+                      <Download className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                      {t('viewResume')}
+                    </ResumeButton>
+                  ) : (
+                    <a
+                      href="#contact"
+                      className="inline-flex items-center justify-center rounded-md text-sm font-medium px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white shadow-2xl shadow-blue-500/50 transition-all duration-300 hover:scale-105 group"
+                    >
+                      <Mail className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                      {t('cta')}
+                    </a>
+                  )}
                 </div>
               </FadeIn>
 

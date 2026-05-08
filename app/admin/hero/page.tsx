@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { FileUploader } from '@/components/admin/FileUploader';
+import { Switch } from '@/components/ui/switch';
 import { Loader2, ChevronDown, ChevronUp } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -33,6 +34,7 @@ export default function HeroManagement() {
     twitter_url: '',
     profile_image_url: '',
     resume_url: '',
+    show_resume: true,
   });
 
   const supabase = createClient();
@@ -323,6 +325,19 @@ export default function HeroManagement() {
               fileType="image"
               description="Upload your profile photo. Recommended: Square image, at least 500x500px."
             />
+
+            <div className="flex items-center justify-between rounded-lg border p-4">
+              <div className="space-y-0.5">
+                <Label>Show Resume Button</Label>
+                <p className="text-sm text-muted-foreground">
+                  When enabled, shows the &quot;View Resume&quot; button. When disabled, shows a &quot;Contact&quot; button instead.
+                </p>
+              </div>
+              <Switch
+                checked={profile.show_resume}
+                onCheckedChange={(checked) => setProfile({ ...profile, show_resume: checked })}
+              />
+            </div>
 
             <FileUploader
               label="Resume/CV"
